@@ -6,17 +6,18 @@ export class NewsItem extends Component {
     return (
       <div className="max-w-[300px] bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
-          <img className="rounded-t-lg" src={imageUrl} alt="" />
+          <img className="rounded-t-lg w-full" src={imageUrl} alt="" />
         </a>
         <div className="p-5">
           <a href="#">
             <h5 className="mb-2 text-lg leading-5 font-bold tracking-tight text-gray-900 dark:text-white">
-              {String(title).length > 45 ? title.slice(0, 45) + "..." : title}
+              {String(title).length > 60 ? title.slice(0, 60) + "..." : title}
+              {/* {title} */}
             </h5>
           </a>
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {String(description).length > 85
-              ? description.slice(0, 85) + "..."
+            {String(description).length > 100
+              ? description.slice(0, 100) + "..."
               : description}
           </p>
           <a
