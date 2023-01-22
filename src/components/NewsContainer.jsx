@@ -39,6 +39,7 @@ export class NewsContainer extends Component {
         nextBtnDisplay: false,
         prevBtnDisplay: true,
       });
+      window.scrollTo(0, 0);
     } else {
       let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=9b1de695cba64b559c7edc7ff635a692&page=${
         this.state.page + 1
@@ -55,6 +56,7 @@ export class NewsContainer extends Component {
             ? false
             : true,
       });
+      window.scrollTo(0, 0);
     }
   };
 
@@ -64,6 +66,7 @@ export class NewsContainer extends Component {
         prevBtnDisplay: false,
         nextBtnDisplay: true,
       });
+      window.scrollTo(0, 0);
     } else {
       let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=9b1de695cba64b559c7edc7ff635a692&page=${
         this.state.page - 1
@@ -76,6 +79,7 @@ export class NewsContainer extends Component {
         nextBtnDisplay: true,
         prevBtnDisplay: this.state.page <= 1 ? false : true,
       });
+      window.scrollTo(0, 0);
     }
   };
 
