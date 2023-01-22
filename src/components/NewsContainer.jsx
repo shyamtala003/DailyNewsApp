@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Loading from "./loading";
 import NewsItem from "./NewsItem";
 
 export class NewsContainer extends Component {
@@ -7,18 +8,22 @@ export class NewsContainer extends Component {
     this.state = {
       article: [],
       page: 1,
-      loading: false,
+      loading: true,
       prevBtnDisplay: false,
       nextBtnDisplay: true,
     };
   }
 
   async componentDidMount() {
+    this.setState({
+      nextBtnDisplay: true,
+    });
     let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=9b1de695cba64b559c7edc7ff635a692&page=${this.state.page}&pagesize=${this.props.pageSize}`;
     let data = await fetch(url);
     let dataJson = await data.json();
     this.setState({
       article: dataJson.articles,
+      loading: false,
       totalResults: dataJson.totalResults,
       prevBtnDisplay: false,
       nextBtnDisplay:
@@ -27,7 +32,6 @@ export class NewsContainer extends Component {
           ? false
           : true,
     });
-    console.log(dataJson);
   }
 
   handleNext = async () => {
@@ -36,11 +40,16 @@ export class NewsContainer extends Component {
       Math.ceil(this.state.totalResults / this.props.pageSize)
     ) {
       this.setState({
+        loading: false,
         nextBtnDisplay: false,
         prevBtnDisplay: true,
       });
       window.scrollTo(0, 0);
     } else {
+      this.setState({
+        loading: true,
+        nextBtnDisplay: true,
+      });
       let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=9b1de695cba64b559c7edc7ff635a692&page=${
         this.state.page + 1
       }&pagesize=${this.props.pageSize}`;
@@ -49,6 +58,7 @@ export class NewsContainer extends Component {
       this.setState({
         page: this.state.page + 1,
         article: dataJson.articles,
+        loading: false,
         prevBtnDisplay: true,
         nextBtnDisplay:
           this.state.page + 1 >=
@@ -63,11 +73,15 @@ export class NewsContainer extends Component {
   handlePrevious = async () => {
     if (this.state.page <= 1) {
       this.setState({
+        loading: false,
         prevBtnDisplay: false,
         nextBtnDisplay: true,
       });
       window.scrollTo(0, 0);
     } else {
+      this.setState({
+        nextBtnDisplay: true,
+      });
       let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=9b1de695cba64b559c7edc7ff635a692&page=${
         this.state.page - 1
       }&pagesize=${this.props.pageSize}`;
@@ -76,6 +90,7 @@ export class NewsContainer extends Component {
       this.setState({
         page: this.state.page - 1,
         article: dataJson.articles,
+        loading: false,
         nextBtnDisplay: true,
         prevBtnDisplay: this.state.page <= 1 ? false : true,
       });
@@ -89,6 +104,7 @@ export class NewsContainer extends Component {
         <h1 className="text-3xl text-center mt-20 md:mt-28 text-white">
           DailyNews - Top Headlines
         </h1>
+        {this.state.loading && <Loading />}
         <div className="mx-6 my-8  grid justify-items-center max-w-[100vw] overflow-x-hidden  grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 gap-8">
           {this.state.article.map((el) => {
             return (
