@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Loading from "./loading";
 import NewsItem from "./NewsItem";
-
-export class NewsContainer extends Component {
+import PropTypes from "prop-types";
+class NewsContainer extends Component {
+  static defaultProps = { country: "in", pageSize: 4, category: "general" };
   constructor() {
     super();
     this.state = {
@@ -18,7 +19,7 @@ export class NewsContainer extends Component {
     this.setState({
       nextBtnDisplay: true,
     });
-    let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=9b1de695cba64b559c7edc7ff635a692&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9b1de695cba64b559c7edc7ff635a692&page=${this.state.page}&pagesize=${this.props.pageSize}`;
     let data = await fetch(url);
     let dataJson = await data.json();
     this.setState({
@@ -50,7 +51,11 @@ export class NewsContainer extends Component {
         loading: true,
         nextBtnDisplay: true,
       });
-      let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=9b1de695cba64b559c7edc7ff635a692&page=${
+      let url = `https://newsapi.org/v2/top-headlines?country=${
+        this.props.country
+      }&category=${
+        this.props.category
+      }&apiKey=9b1de695cba64b559c7edc7ff635a692&page=${
         this.state.page + 1
       }&pagesize=${this.props.pageSize}`;
       let data = await fetch(url);
@@ -82,7 +87,11 @@ export class NewsContainer extends Component {
       this.setState({
         nextBtnDisplay: true,
       });
-      let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=9b1de695cba64b559c7edc7ff635a692&page=${
+      let url = `https://newsapi.org/v2/top-headlines?country=${
+        this.props.country
+      }&category=${
+        this.props.category
+      }&apiKey=9b1de695cba64b559c7edc7ff635a692&page=${
         this.state.page - 1
       }&pagesize=${this.props.pageSize}`;
       let data = await fetch(url);
@@ -152,5 +161,12 @@ export class NewsContainer extends Component {
     );
   }
 }
+
+// define default props and props type
+NewsContainer.propTypes = {
+  country: PropTypes.string.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  category: PropTypes.string.isRequired,
+};
 
 export default NewsContainer;
