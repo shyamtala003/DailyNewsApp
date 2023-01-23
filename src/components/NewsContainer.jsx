@@ -110,8 +110,8 @@ class NewsContainer extends Component {
   render() {
     return (
       <>
-        <h1 className="text-3xl text-center mt-20 md:mt-28 text-white">
-          DailyNews - Top Headlines
+        <h1 className="text-3xl text-center capitalize mt-20 md:mt-28 text-white">
+          DailyNews - {this.props.category}
         </h1>
         {this.state.loading && <Loading />}
         <div className="mx-6 my-8  grid justify-items-center max-w-[100vw] overflow-x-hidden  grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 gap-8">
