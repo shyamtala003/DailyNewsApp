@@ -1,127 +1,122 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import NavBar from "./NavBar";
 import NewsContainer from "./NewsContainer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
 
-export class App extends Component {
-  pageSize = 12;
-  state = {
-    progress: 0,
+let App = () => {
+  let pageSize = 12;
+  const [loaderProgres, setLoaderProgres] = useState(0);
+  let setProgres = (progress) => {
+    setLoaderProgres(progress);
   };
-  setProgress = (progress) => {
-    this.setState({
-      progress: progress,
-    });
-  };
-  render() {
-    return (
-      <>
-        <Router>
-          <LoadingBar
-            color="#2563eb"
-            progress={this.state.progress}
-            onLoaderFinished={() => setProgress(10)}
-            height={3}
+
+  return (
+    <>
+      <Router>
+        <LoadingBar
+          color="#2563eb"
+          progress={loaderProgres}
+          onLoaderFinished={() => setProgres(0)}
+          height={3}
+        />
+        <NavBar />
+        <Routes>
+          <Route
+            path="/"
+            exact
+            element={
+              <NewsContainer
+                SetProgress={setProgres}
+                key="general"
+                pageSize={12}
+                country="in"
+                category="general"
+              />
+            }
           />
-          <NavBar />
-          <Routes>
-            <Route
-              path="/"
-              exact
-              element={
-                <NewsContainer
-                  SetProgress={this.setProgress}
-                  key="general"
-                  pageSize={this.pageSize}
-                  country="in"
-                  category="general"
-                />
-              }
-            />
-            <Route
-              path="/business"
-              exact
-              element={
-                <NewsContainer
-                  SetProgress={this.setProgress}
-                  key="business"
-                  pageSize={this.pageSize}
-                  country="in"
-                  category="business"
-                />
-              }
-            />
-            <Route
-              path="/entertainment"
-              exact
-              element={
-                <NewsContainer
-                  SetProgress={this.setProgress}
-                  key="entertainment"
-                  pageSize={this.pageSize}
-                  country="in"
-                  category="entertainment"
-                />
-              }
-            />
-            <Route
-              path="/health"
-              exact
-              element={
-                <NewsContainer
-                  SetProgress={this.setProgress}
-                  key="health"
-                  pageSize={this.pageSize}
-                  country="in"
-                  category="health"
-                />
-              }
-            />
-            <Route
-              path="/science"
-              exact
-              element={
-                <NewsContainer
-                  SetProgress={this.setProgress}
-                  key="science"
-                  pageSize={this.pageSize}
-                  country="in"
-                  category="science"
-                />
-              }
-            />
-            <Route
-              path="/sports"
-              exact
-              element={
-                <NewsContainer
-                  SetProgress={this.setProgress}
-                  key="sports"
-                  pageSize={this.pageSize}
-                  country="in"
-                  category="sports"
-                />
-              }
-            />
-            <Route
-              path="/technology"
-              exact
-              element={
-                <NewsContainer
-                  SetProgress={this.setProgress}
-                  key="technology"
-                  pageSize={this.pageSize}
-                  country="in"
-                  category="technology"
-                />
-              }
-            />
-          </Routes>
-        </Router>
-      </>
-    );
-  }
-}
+          <Route
+            path="/business"
+            exact
+            element={
+              <NewsContainer
+                SetProgress={setProgres}
+                key="business"
+                pageSize={12}
+                country="in"
+                category="business"
+              />
+            }
+          />
+          <Route
+            path="/entertainment"
+            exact
+            element={
+              <NewsContainer
+                SetProgress={setProgres}
+                key="entertainment"
+                pageSize={12}
+                country="in"
+                category="entertainment"
+              />
+            }
+          />
+          <Route
+            path="/health"
+            exact
+            element={
+              <NewsContainer
+                SetProgress={setProgres}
+                key="health"
+                pageSize={12}
+                country="in"
+                category="health"
+              />
+            }
+          />
+          <Route
+            path="/science"
+            exact
+            element={
+              <NewsContainer
+                SetProgress={setProgres}
+                key="science"
+                pageSize={12}
+                country="in"
+                category="science"
+              />
+            }
+          />
+          <Route
+            path="/sports"
+            exact
+            element={
+              <NewsContainer
+                SetProgress={setProgres}
+                key="sports"
+                pageSize={12}
+                country="in"
+                category="sports"
+              />
+            }
+          />
+          <Route
+            path="/technology"
+            exact
+            element={
+              <NewsContainer
+                SetProgress={setProgres}
+                key="technology"
+                pageSize={12}
+                country="in"
+                category="technology"
+              />
+            }
+          />
+        </Routes>
+      </Router>
+    </>
+  );
+};
 
 export default App;
