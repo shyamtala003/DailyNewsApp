@@ -15,6 +15,8 @@ class NewsContainer extends Component {
     };
   }
 
+  // async updateNews() {}
+
   async componentDidMount() {
     this.setState({
       nextBtnDisplay: true,
@@ -131,6 +133,9 @@ class NewsContainer extends Component {
                     : el.urlToImage
                 }
                 url={el.url}
+                publishedDate={el.publishedAt}
+                author={el.author}
+                source={el.source.name}
               />
             );
           })}

@@ -2,9 +2,13 @@ import React, { Component } from "react";
 
 export class NewsItem extends Component {
   render() {
-    let { title, description, imageUrl, url } = this.props;
+    let { title, description, imageUrl, url, author, publishedDate, source } =
+      this.props;
     return (
-      <div className="max-w-[300px] bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div className="relative max-w-[300px] bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <span className="absolute top-2 right-2 rounded-md font-semibold backdrop-blur-lg bg-[rgba(0,0,0,.6)] text-white text-sm px-3 py-1">
+          {source}
+        </span>
         <a href="#">
           <img className="rounded-t-lg w-full" src={imageUrl} alt="" />
         </a>
@@ -19,6 +23,11 @@ export class NewsItem extends Component {
             {String(description).length > 100
               ? description.slice(0, 100) + "..."
               : description}
+          </p>
+          <p className="mb-3 font-semibold text-gray-500 dark:text-gray-500">
+            {!author ? "Unknown" : author}
+            <br />
+            {new Date(publishedDate).toUTCString()}
           </p>
           <a
             href={url}
