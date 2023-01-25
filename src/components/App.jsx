@@ -2,13 +2,28 @@ import React, { Component } from "react";
 import NavBar from "./NavBar";
 import NewsContainer from "./NewsContainer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoadingBar from "react-top-loading-bar";
 
 export class App extends Component {
   pageSize = 12;
+  state = {
+    progress: 0,
+  };
+  setProgress = (progress) => {
+    this.setState({
+      progress: progress,
+    });
+  };
   render() {
     return (
       <>
         <Router>
+          <LoadingBar
+            color="#2563eb"
+            progress={this.state.progress}
+            onLoaderFinished={() => setProgress(10)}
+            height={3}
+          />
           <NavBar />
           <Routes>
             <Route
@@ -16,6 +31,7 @@ export class App extends Component {
               exact
               element={
                 <NewsContainer
+                  SetProgress={this.setProgress}
                   key="general"
                   pageSize={this.pageSize}
                   country="in"
@@ -28,6 +44,7 @@ export class App extends Component {
               exact
               element={
                 <NewsContainer
+                  SetProgress={this.setProgress}
                   key="business"
                   pageSize={this.pageSize}
                   country="in"
@@ -40,6 +57,7 @@ export class App extends Component {
               exact
               element={
                 <NewsContainer
+                  SetProgress={this.setProgress}
                   key="entertainment"
                   pageSize={this.pageSize}
                   country="in"
@@ -52,6 +70,7 @@ export class App extends Component {
               exact
               element={
                 <NewsContainer
+                  SetProgress={this.setProgress}
                   key="health"
                   pageSize={this.pageSize}
                   country="in"
@@ -64,6 +83,7 @@ export class App extends Component {
               exact
               element={
                 <NewsContainer
+                  SetProgress={this.setProgress}
                   key="science"
                   pageSize={this.pageSize}
                   country="in"
@@ -76,6 +96,7 @@ export class App extends Component {
               exact
               element={
                 <NewsContainer
+                  SetProgress={this.setProgress}
                   key="sports"
                   pageSize={this.pageSize}
                   country="in"
@@ -88,6 +109,7 @@ export class App extends Component {
               exact
               element={
                 <NewsContainer
+                  SetProgress={this.setProgress}
                   key="technology"
                   pageSize={this.pageSize}
                   country="in"
