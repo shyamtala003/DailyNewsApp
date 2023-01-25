@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Loading from "./loading";
+import Loading from "./Loading";
 import NewsItem from "./NewsItem";
 import PropTypes from "prop-types";
 class NewsContainer extends Component {
