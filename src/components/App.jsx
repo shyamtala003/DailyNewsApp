@@ -4,6 +4,7 @@ import NewsContainer from "./NewsContainer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export class App extends Component {
+  pageSize = 12;
   render() {
     return (
       <>
@@ -16,7 +17,8 @@ export class App extends Component {
               element={
                 <NewsContainer
                   key="general"
-                  pageSize={12}
+                  page={1}
+                  pageSize={this.pageSize}
                   country="in"
                   category="general"
                 />
@@ -28,7 +30,8 @@ export class App extends Component {
               element={
                 <NewsContainer
                   key="business"
-                  pageSize={12}
+                  page={1}
+                  pageSize={this.pageSize}
                   country="in"
                   category="business"
                 />
@@ -40,7 +43,8 @@ export class App extends Component {
               element={
                 <NewsContainer
                   key="entertainment"
-                  pageSize={12}
+                  page={1}
+                  pageSize={this.pageSize}
                   country="in"
                   category="entertainment"
                 />
@@ -52,7 +56,8 @@ export class App extends Component {
               element={
                 <NewsContainer
                   key="health"
-                  pageSize={12}
+                  page={1}
+                  pageSize={this.pageSize}
                   country="in"
                   category="health"
                 />
@@ -64,7 +69,8 @@ export class App extends Component {
               element={
                 <NewsContainer
                   key="science"
-                  pageSize={12}
+                  page={1}
+                  pageSize={this.pageSize}
                   country="in"
                   category="science"
                 />
@@ -76,7 +82,8 @@ export class App extends Component {
               element={
                 <NewsContainer
                   key="sports"
-                  pageSize={12}
+                  page={1}
+                  pageSize={this.pageSize}
                   country="in"
                   category="sports"
                 />
@@ -88,7 +95,8 @@ export class App extends Component {
               element={
                 <NewsContainer
                   key="technology"
-                  pageSize={12}
+                  page={1}
+                  pageSize={this.pageSize}
                   country="in"
                   category="technology"
                 />

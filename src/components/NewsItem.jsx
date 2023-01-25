@@ -14,7 +14,7 @@ export class NewsItem extends Component {
         </a>
         <div className="p-5">
           <a href="#">
-            <h5 className="mb-2 text-lg leading-5 font-bold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="mb-2 text-lg leading-5 font-semibold tracking-wide text-gray-900 dark:text-gray-100">
               {String(title).length > 60 ? title.slice(0, 60) + "..." : title}
               {/* {title} */}
             </h5>

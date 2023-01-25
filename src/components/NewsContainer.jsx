@@ -3,7 +3,12 @@ import Loading from "./loading";
 import NewsItem from "./NewsItem";
 import PropTypes from "prop-types";
 class NewsContainer extends Component {
-  static defaultProps = { country: "in", pageSize: 4, category: "general" };
+  static defaultProps = {
+    country: "in",
+    pageSize: 4,
+    category: "general",
+    page: 1,
+  };
   constructor() {
     super();
     this.state = {
@@ -15,105 +20,50 @@ class NewsContainer extends Component {
     };
   }
 
-  // async updateNews() {}
-
-  async componentDidMount() {
-    this.setState({
-      nextBtnDisplay: true,
-    });
+  async updateNews() {
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9b1de695cba64b559c7edc7ff635a692&page=${this.state.page}&pagesize=${this.props.pageSize}`;
     let data = await fetch(url);
     let dataJson = await data.json();
     this.setState({
-      article: dataJson.articles,
-      loading: false,
-      totalResults: dataJson.totalResults,
-      prevBtnDisplay: false,
+      prevBtnDisplay: this.state.page <= 1 ? false : true,
       nextBtnDisplay:
-        this.state.page + 1 >=
+        this.state.page + 1 >
         Math.ceil(this.state.totalResults / this.props.pageSize)
           ? false
           : true,
+      article: dataJson.articles,
+      loading: false,
+      totalResults: dataJson.totalResults,
     });
+    document.title =
+      String(this.props.category).slice(0, 1).toUpperCase() +
+      String(this.props.category).slice(1);
+    window.scroll(0, 0);
+  }
+
+  async componentDidMount() {
+    this.updateNews();
   }
 
   handleNext = async () => {
-    if (
-      this.state.page + 1 >
-      Math.ceil(this.state.totalResults / this.props.pageSize)
-    ) {
-      this.setState({
-        loading: false,
-        nextBtnDisplay: false,
-        prevBtnDisplay: true,
-      });
-      window.scrollTo(0, 0);
-    } else {
-      this.setState({
-        loading: true,
-        nextBtnDisplay: true,
-      });
-      let url = `https://newsapi.org/v2/top-headlines?country=${
-        this.props.country
-      }&category=${
-        this.props.category
-      }&apiKey=9b1de695cba64b559c7edc7ff635a692&page=${
-        this.state.page + 1
-      }&pagesize=${this.props.pageSize}`;
-      let data = await fetch(url);
-      let dataJson = await data.json();
-      this.setState({
-        page: this.state.page + 1,
-        article: dataJson.articles,
-        loading: false,
-        prevBtnDisplay: true,
-        nextBtnDisplay:
-          this.state.page + 1 >=
-          Math.ceil(this.state.totalResults / this.props.pageSize)
-            ? false
-            : true,
-      });
-      window.scrollTo(0, 0);
-    }
+    this.setState({
+      page: this.state.page + 1,
+    });
+    this.updateNews();
   };
 
   handlePrevious = async () => {
-    if (this.state.page <= 1) {
-      this.setState({
-        loading: false,
-        prevBtnDisplay: false,
-        nextBtnDisplay: true,
-      });
-      window.scrollTo(0, 0);
-    } else {
-      this.setState({
-        nextBtnDisplay: true,
-      });
-      let url = `https://newsapi.org/v2/top-headlines?country=${
-        this.props.country
-      }&category=${
-        this.props.category
-      }&apiKey=9b1de695cba64b559c7edc7ff635a692&page=${
-        this.state.page - 1
-      }&pagesize=${this.props.pageSize}`;
-      let data = await fetch(url);
-      let dataJson = await data.json();
-      this.setState({
-        page: this.state.page - 1,
-        article: dataJson.articles,
-        loading: false,
-        nextBtnDisplay: true,
-        prevBtnDisplay: this.state.page <= 1 ? false : true,
-      });
-      window.scrollTo(0, 0);
-    }
+    this.setState({
+      page: this.state.page - 1,
+    });
+    this.updateNews();
   };
 
   render() {
     return (
       <>
-        <h1 className="text-3xl text-center capitalize mt-20 md:mt-28 text-white">
-          DailyNews - {this.props.category}
+        <h1 className="text-2xl md:text-3xl text-center capitalize mt-20 md:mt-28 text-white">
+          DailyNews - Top {this.props.category} Headlines
         </h1>
         {this.state.loading && <Loading />}
         <div className="mx-6 my-8  grid justify-items-center max-w-[100vw] overflow-x-hidden  grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 gap-8">
