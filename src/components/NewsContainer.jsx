@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Loading from "./Loading";
 import NewsItem from "./NewsItem";
-import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 let NewsContainer = ({ country, category, pageSize, SetProgress }) => {
@@ -10,14 +9,17 @@ let NewsContainer = ({ country, category, pageSize, SetProgress }) => {
   const [totalResult, settotalResult] = useState(1);
 
   let updateNews = async () => {
+    document.title =
+      String(category).slice(0, 1).toUpperCase() + String(category).slice(1);
+
     SetProgress(10);
     let url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=db76d553d0384c75a5fcc72b0956ffe1&page=${page}&pagesize=${pageSize}`;
     let data = await fetch(url);
     SetProgress(50);
     let dataJson = await data.json();
+
     setArticle(dataJson.articles);
     settotalResult(dataJson.totalResults);
-    console.log(dataJson);
     SetProgress(100);
   };
 
