@@ -1,7 +1,10 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 let NavBar = () => {
+  let location = useLocation();
+  useEffect(() => {}, [location]);
+
   return (
     <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
@@ -50,7 +53,9 @@ let NavBar = () => {
             <li>
               <Link
                 to="/"
-                className="block capitalize py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className={`block capitalize py-2 pl-3 pr-4 ${
+                  location.pathname === "/" ? "text-white" : "text-gray-400"
+                } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
               >
                 general
               </Link>
@@ -58,7 +63,11 @@ let NavBar = () => {
             <li>
               <Link
                 to="/business"
-                className="block capitalize py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className={`block capitalize py-2 pl-3 pr-4 ${
+                  location.pathname === "/business"
+                    ? "text-white"
+                    : "text-gray-400"
+                } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
               >
                 business
               </Link>
@@ -66,7 +75,11 @@ let NavBar = () => {
             <li>
               <Link
                 to="/entertainment"
-                className="block capitalize py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className={`block capitalize py-2 pl-3 pr-4 ${
+                  location.pathname === "/entertainment"
+                    ? "text-white"
+                    : "text-gray-400"
+                } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
               >
                 entertainmen
               </Link>
@@ -74,7 +87,11 @@ let NavBar = () => {
             <li>
               <Link
                 to="/health"
-                className="block capitalize py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className={`block capitalize py-2 pl-3 pr-4 ${
+                  location.pathname === "/health"
+                    ? "text-white"
+                    : "text-gray-400"
+                } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
               >
                 health
               </Link>
@@ -82,7 +99,11 @@ let NavBar = () => {
             <li>
               <Link
                 to="/science"
-                className="block capitalize py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className={`block capitalize py-2 pl-3 pr-4 ${
+                  location.pathname === "/science"
+                    ? "text-white"
+                    : "text-gray-400"
+                } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
               >
                 science
               </Link>
@@ -90,7 +111,11 @@ let NavBar = () => {
             <li>
               <Link
                 to="/sports"
-                className="block capitalize py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className={`block capitalize py-2 pl-3 pr-4 ${
+                  location.pathname === "/sports"
+                    ? "text-white"
+                    : "text-gray-400"
+                } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
               >
                 sports
               </Link>
@@ -98,7 +123,11 @@ let NavBar = () => {
             <li>
               <Link
                 to="/technology"
-                className="block capitalize py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className={`block capitalize py-2 pl-3 pr-4 ${
+                  location.pathname === "/technology"
+                    ? "text-white"
+                    : "text-gray-400"
+                } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
               >
                 technology
               </Link>
