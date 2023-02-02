@@ -15,7 +15,11 @@ let NewsItem = ({
         {source}
       </span>
       <a href="#">
-        <img className="rounded-t-lg w-full" src={imageUrl} alt="" />
+        <img
+          className="rounded-t-lg w-full min-h-[140px] max-h-40"
+          src={imageUrl}
+          alt=""
+        />
       </a>
       <div className="p-5">
         <a href="#">

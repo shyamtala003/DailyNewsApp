@@ -1,9 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 let NavBar = () => {
   let location = useLocation();
   useEffect(() => {}, [location]);
+
+  let menubtn = useRef();
+
+  let closeMenu = () => {
+    menubtn.current.click();
+  };
 
   return (
     <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
@@ -23,6 +29,7 @@ let NavBar = () => {
         </Link>
         <div className="flex md:order-2">
           <button
+            ref={menubtn}
             data-collapse-toggle="navbar-sticky"
             type="button"
             className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -56,6 +63,9 @@ let NavBar = () => {
                 className={`block capitalize py-2 pl-3 pr-4 ${
                   location.pathname === "/" ? "text-white" : "text-gray-400"
                 } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                onClick={() => {
+                  closeMenu();
+                }}
               >
                 general
               </Link>
@@ -68,6 +78,9 @@ let NavBar = () => {
                     ? "text-white"
                     : "text-gray-400"
                 } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                onClick={() => {
+                  closeMenu();
+                }}
               >
                 business
               </Link>
@@ -80,6 +93,9 @@ let NavBar = () => {
                     ? "text-white"
                     : "text-gray-400"
                 } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                onClick={() => {
+                  closeMenu();
+                }}
               >
                 entertainmen
               </Link>
@@ -92,6 +108,9 @@ let NavBar = () => {
                     ? "text-white"
                     : "text-gray-400"
                 } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                onClick={() => {
+                  closeMenu();
+                }}
               >
                 health
               </Link>
@@ -104,6 +123,9 @@ let NavBar = () => {
                     ? "text-white"
                     : "text-gray-400"
                 } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                onClick={() => {
+                  closeMenu();
+                }}
               >
                 science
               </Link>
@@ -116,6 +138,9 @@ let NavBar = () => {
                     ? "text-white"
                     : "text-gray-400"
                 } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                onClick={() => {
+                  closeMenu();
+                }}
               >
                 sports
               </Link>
@@ -128,6 +153,9 @@ let NavBar = () => {
                     ? "text-white"
                     : "text-gray-400"
                 } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                onClick={() => {
+                  closeMenu();
+                }}
               >
                 technology
               </Link>
